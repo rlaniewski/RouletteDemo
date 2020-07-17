@@ -110,6 +110,13 @@ public class ConsoleRoulette {
                         malformedInput = true;
                     }
                 }
+
+                try {
+                    betAmount = Float.parseFloat(betAmountToken);
+                } catch (NumberFormatException e) {
+                    malformedInput = true;
+                }
+
             } else {
                 quit = "quit".equalsIgnoreCase(input);
             }
