@@ -89,7 +89,6 @@ public class ConsoleRoulette {
                         winnings = bet.betAmount * 2;
                     }
                 } else {
-                    System.out.print(bet.betAmount + "   ");
                     System.out.print(StringPadder.padStringRight("" + bet.betAmount, 8));
 
                     if (bet.betOnNumber == wheelNumber) {
