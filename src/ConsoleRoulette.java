@@ -74,10 +74,14 @@ public class ConsoleRoulette {
                 System.out.print(StringPadder.padStringLeft("LOSE", 7));
             }
 
-            System.out.println(winnings);
+            System.out.println(StringPadder.padStringLeft(""+winnings, 13));
         }
 
         System.out.println();
+    }
+
+    private void clearBets() {
+        bets.clear();
     }
 
     public void loadPlayers() {
@@ -106,6 +110,8 @@ public class ConsoleRoulette {
         System.out.println("Ball landed on " + wheelNumber + "!");
 
         processBets();
+        clearBets();
+        prompt();
     }
 
     class SpinTask extends TimerTask {
