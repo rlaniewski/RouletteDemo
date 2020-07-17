@@ -80,12 +80,21 @@ public class ConsoleRoulette {
         while (!quit) {
             prompt();
             input = scanner.nextLine();
-
             StringTokenizer defaultTokenizer = new StringTokenizer(input);
-
             int tokens = defaultTokenizer.countTokens();
 
             if (tokens == 3) {
+                String playerName;
+                String betToken;
+                boolean betTypeOddEven = false;
+                String betOnOddEven = null;
+                int betOnNumber = -1;
+                String betAmountToken;
+                float betAmount = -1;
+
+                playerName = defaultTokenizer.nextToken();
+                betToken = defaultTokenizer.nextToken();
+                betAmountToken = defaultTokenizer.nextToken();
 
             } else {
                 quit = "quit".equalsIgnoreCase(input);
