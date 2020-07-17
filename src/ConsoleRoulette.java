@@ -63,5 +63,7 @@ public class ConsoleRoulette {
 
         cr.loadPlayers();
         cr.loadTasks();
+
+        cr.cancelTasks();
     }
 }
