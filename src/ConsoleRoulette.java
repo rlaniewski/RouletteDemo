@@ -134,11 +134,54 @@ public class ConsoleRoulette {
         BufferedReader reader;
         try {
             reader = new BufferedReader(new FileReader("Players.txt"));
-            String playerName = reader.readLine();
-            while (playerName != null) {
-                System.out.println(playerName + " joined.");
-                players.add(playerName);
-                playerName = reader.readLine();
+            String line = reader.readLine();
+
+            while (line != null) {
+                String playerName = null;
+                boolean malformedInput = false;
+
+                if (!line.contains(",")) {
+                    playerName = line;
+                    players.add(playerName);
+                    System.out.println(playerName + " joined.");
+                } else {
+                    StringTokenizer defaultTokenizer = new StringTokenizer(line, ",");
+
+                    int tokens = defaultTokenizer.countTokens();
+                    String totalWinToken;
+                    String totalBetToken;
+                    float totalWin = 0;
+                    float totalBet = 0;
+
+                    if (tokens == 3) {
+                        playerName = defaultTokenizer.nextToken();
+                        totalWinToken = defaultTokenizer.nextToken();
+                        totalBetToken = defaultTokenizer.nextToken();
+
+                        try {
+                            totalWin = Float.parseFloat(totalWinToken);
+                        } catch (NumberFormatException e) {
+                            malformedInput = true;
+                        }
+
+                        try {
+                            totalBet = Float.parseFloat(totalBetToken);
+                        } catch (NumberFormatException e) {
+                            malformedInput = true;
+                        }
+                    }
+
+                    if (playerName != null && !malformedInput) {
+                        players.add(playerName);
+                        updateTotalWinnings(playerName, totalWin);
+                        updateTotalBets(playerName, totalBet);
+
+                        System.out.println(playerName + " joined.");
+                        System.out.println("Loaded "+playerName+"'s past winnings and bets.");
+                    }
+                }
+
+                line = reader.readLine();
             }
             reader.close();
         } catch (IOException e) {
