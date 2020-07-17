@@ -46,6 +46,8 @@ public class ConsoleRoulette {
 
     private void addBet(Bet bet) {
         bets.add(bet);
+        updateTotalBets(bet.playerName, bet.betAmount);
+
         System.out.print(bet.playerName + " betted " + bet.betAmount + " on ");
         if (bet.betTypeOddEven) {
             System.out.println(bet.betOnOddEven);
@@ -104,6 +106,8 @@ public class ConsoleRoulette {
             }
 
             System.out.println(StringPadder.padStringLeft(""+winnings, 13));
+
+            updateTotalWinnings(bet.playerName, winnings);
         }
 
         System.out.println();
