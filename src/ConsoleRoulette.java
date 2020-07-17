@@ -15,6 +15,16 @@ public class ConsoleRoulette {
 
     private int wheelNumber = -1;
 
+    private void addBet(Bet bet) {
+        bets.add(bet);
+        System.out.print(bet.playerName + " betted " + bet.betAmount + " on ");
+        if (bet.betTypeOddEven) {
+            System.out.println(bet.betOnOddEven);
+        } else {
+            System.out.println(bet.betOnNumber);
+        }
+    }
+
     public void loadPlayers() {
         BufferedReader reader;
         try {
@@ -126,7 +136,13 @@ public class ConsoleRoulette {
                 } else if (malformedInput) {
                     System.out.println("malformed input.");
                 } else {
-
+                    Bet bet = new Bet();
+                    bet.playerName = playerName;
+                    bet.betTypeOddEven = betTypeOddEven;
+                    bet.betOnOddEven = betOnOddEven;
+                    bet.betOnNumber = betOnNumber;
+                    bet.betAmount = betAmount;
+                    addBet(bet);
                 }
             } else {
                 quit = "quit".equalsIgnoreCase(input);
