@@ -58,12 +58,38 @@ public class ConsoleRoulette {
         }
     }
 
+    private void prompt() {
+        System.out.print("place_your_bets> ");
+    }
+
+    public void play() {
+        Scanner scanner = new Scanner(System.in);
+
+        String input = null;
+        boolean quit = false;
+
+        while (!quit) {
+            prompt();
+            input = scanner.nextLine();
+
+            StringTokenizer defaultTokenizer = new StringTokenizer(input);
+
+            int tokens = defaultTokenizer.countTokens();
+
+            if (tokens == 3) {
+
+            } else {
+                quit = "quit".equalsIgnoreCase(input);
+            }
+        }
+    }
+
     public static void main(String[] args) {
         ConsoleRoulette cr = new ConsoleRoulette();
 
         cr.loadPlayers();
         cr.loadTasks();
-
+        cr.play();
         cr.cancelTasks();
     }
 }
