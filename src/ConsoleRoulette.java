@@ -31,7 +31,7 @@ public class ConsoleRoulette {
 
         System.out.println();
         System.out.println("Number: " + wheelNumber);
-        System.out.println("Player          Bet     Outcome     Winnings");
+        System.out.println(StringPadder.padStringRight("Player", 25) + "Bet     Outcome     Winnings");
         System.out.println("---");
 
         if (bets.size() == 0) {
@@ -42,13 +42,13 @@ public class ConsoleRoulette {
         for (Bet bet : bets) {
             float winnings = 0;
 
-            System.out.print(bet.playerName + "     ");
+            System.out.print(StringPadder.padStringRight(bet.playerName, 25));
 
             if (wheelNumber == 0) {
                 outcomeWin = false;
             } else {
                 if (bet.betTypeOddEven) {
-                    System.out.print(bet.betOnOddEven + "    ");
+                    System.out.print(StringPadder.padStringRight(bet.betOnOddEven, 8));
 
                     if ("EVEN".equals(bet.betOnOddEven) && numberIsEven) {
                         outcomeWin = true;
@@ -59,6 +59,7 @@ public class ConsoleRoulette {
                     }
                 } else {
                     System.out.print(bet.betAmount + "   ");
+                    System.out.print(StringPadder.padStringRight("" + bet.betAmount, 8));
 
                     if (bet.betOnNumber == wheelNumber) {
                         outcomeWin = true;
@@ -68,9 +69,9 @@ public class ConsoleRoulette {
             }
 
             if (outcomeWin) {
-                System.out.print("    WIN");
+                System.out.print(StringPadder.padStringLeft("WIN", 7));
             } else {
-                System.out.print("   LOSE");
+                System.out.print(StringPadder.padStringLeft("LOSE", 7));
             }
 
             System.out.println(winnings);
