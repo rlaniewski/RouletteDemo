@@ -39,6 +39,44 @@ public class ConsoleRoulette {
             return;
         }
 
+        for (Bet bet : bets) {
+            float winnings = 0;
+
+            System.out.print(bet.playerName + "     ");
+
+            if (wheelNumber == 0) {
+                outcomeWin = false;
+            } else {
+                if (bet.betTypeOddEven) {
+                    System.out.print(bet.betOnOddEven + "    ");
+
+                    if ("EVEN".equals(bet.betOnOddEven) && numberIsEven) {
+                        outcomeWin = true;
+                        winnings = bet.betAmount * 2;
+                    } else if ("ODD".equals(bet.betOnOddEven) && !numberIsEven) {
+                        outcomeWin = true;
+                        winnings = bet.betAmount * 2;
+                    }
+                } else {
+                    System.out.print(bet.betAmount + "   ");
+
+                    if (bet.betOnNumber == wheelNumber) {
+                        outcomeWin = true;
+                        winnings = bet.betAmount * 36;
+                    }
+                }
+            }
+
+            if (outcomeWin) {
+                System.out.print("    WIN");
+            } else {
+                System.out.print("   LOSE");
+            }
+
+            System.out.println(winnings);
+        }
+
+        System.out.println();
     }
 
     public void loadPlayers() {
