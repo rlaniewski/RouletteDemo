@@ -13,6 +13,35 @@ public class ConsoleRoulette {
     ArrayList<String> players = new ArrayList<>();
     ArrayList<Bet> bets = new ArrayList<>();
 
+    HashMap<String, Float> totalBets = new HashMap<>();
+    HashMap<String, Float> totalWinnings = new HashMap<>();
+
+    private float getTotalBets(String playerName) {
+        if (totalBets.containsKey(playerName)) {
+            return totalBets.get(playerName);
+        } else {
+            return 0;
+        }
+    }
+
+    private float getTotalWinnings(String playerName) {
+        if (totalWinnings.containsKey(playerName)) {
+            return totalWinnings.get(playerName);
+        } else {
+            return 0;
+        }
+    }
+
+    private void updateTotalBets(String playerName, float bets) {
+        float currentTotalBets = getTotalBets(playerName);
+        totalBets.put(playerName, currentTotalBets + bets);
+    }
+
+    private void updateTotalWinnings(String playerName, float winnings) {
+        float currentTotalWinnings = getTotalWinnings(playerName);
+        totalWinnings.put(playerName, currentTotalWinnings + winnings);
+    }
+
     private int wheelNumber = -1;
 
     private void addBet(Bet bet) {
