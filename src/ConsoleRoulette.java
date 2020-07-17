@@ -31,6 +31,10 @@ public class ConsoleRoulette {
         }
     }
 
+    private boolean playerFound(String playerName) {
+        return players.contains(playerName);
+    }
+
     private void spinWheel() {
         wheelNumber = (int) (Math.random() * 37);
 
@@ -117,6 +121,13 @@ public class ConsoleRoulette {
                     malformedInput = true;
                 }
 
+                if (!playerFound(playerName)) {
+                    System.out.println(playerName + " not found.");
+                } else if (malformedInput) {
+                    System.out.println("malformed input.");
+                } else {
+
+                }
             } else {
                 quit = "quit".equalsIgnoreCase(input);
             }
