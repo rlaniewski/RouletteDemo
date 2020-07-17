@@ -82,6 +82,7 @@ public class ConsoleRoulette {
             input = scanner.nextLine();
             StringTokenizer defaultTokenizer = new StringTokenizer(input);
             int tokens = defaultTokenizer.countTokens();
+            boolean malformedInput = false;
 
             if (tokens == 3) {
                 String playerName;
@@ -96,6 +97,19 @@ public class ConsoleRoulette {
                 betToken = defaultTokenizer.nextToken();
                 betAmountToken = defaultTokenizer.nextToken();
 
+                if ("EVEN".equalsIgnoreCase(betToken)) {
+                    betOnOddEven = "EVEN";
+                    betTypeOddEven = true;
+                } else if ("ODD".equalsIgnoreCase(betToken)) {
+                    betOnOddEven = "ODD";
+                    betTypeOddEven = true;
+                } else {
+                    try {
+                        betOnNumber = Integer.parseInt(betToken);
+                    } catch (NumberFormatException e) {
+                        malformedInput = true;
+                    }
+                }
             } else {
                 quit = "quit".equalsIgnoreCase(input);
             }
