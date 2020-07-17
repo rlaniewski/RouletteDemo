@@ -1,8 +1,17 @@
 import java.io.*;
 import java.util.*;
 
+class Bet {
+    public String playerName;
+    public boolean betTypeOddEven = false;
+    public String betOnOddEven;
+    public int betOnNumber = -1;
+    public float betAmount;
+}
+
 public class ConsoleRoulette {
     ArrayList<String> players = new ArrayList<>();
+    ArrayList<Bet> bets = new ArrayList<>();
 
     private int wheelNumber = -1;
 
