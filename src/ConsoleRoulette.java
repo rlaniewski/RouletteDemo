@@ -22,9 +22,46 @@ public class ConsoleRoulette {
         }
     }
 
+    private void spinWheel() {
+        wheelNumber = (int) (Math.random() * 37);
+
+        System.out.println("Ball landed on " + wheelNumber + "!");
+    }
+
+    class SpinTask extends TimerTask {
+        private String name;
+
+        public SpinTask(String name) {
+            this.name = name;
+        }
+
+        public void run() {
+            System.out.println();
+            System.out.println("[" + new java.util.Date() + "] " + name + ": Executing task!");
+            spinWheel();
+        }
+    }
+
+    private SpinTask spinTask;
+    private Timer timer;
+
+    public void loadTasks() {
+        spinTask = new SpinTask("Spin");
+        timer = new Timer();
+        timer.scheduleAtFixedRate(spinTask, 30000, 30000);  // executes every 30 seconds
+    }
+
+    public void cancelTasks() {
+        System.out.println("Cancelling tasks...");
+        if (timer != null) {
+            timer.cancel();
+        }
+    }
+
     public static void main(String[] args) {
         ConsoleRoulette cr = new ConsoleRoulette();
 
         cr.loadPlayers();
+        cr.loadTasks();
     }
 }
