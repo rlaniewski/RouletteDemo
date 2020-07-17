@@ -25,6 +25,22 @@ public class ConsoleRoulette {
         }
     }
 
+    private void processBets() {
+        boolean numberIsEven = (wheelNumber % 2 == 0);
+        boolean outcomeWin = false;
+
+        System.out.println();
+        System.out.println("Number: " + wheelNumber);
+        System.out.println("Player          Bet     Outcome     Winnings");
+        System.out.println("---");
+
+        if (bets.size() == 0) {
+            System.out.println("No bets placed.");
+            return;
+        }
+
+    }
+
     public void loadPlayers() {
         BufferedReader reader;
         try {
@@ -49,6 +65,8 @@ public class ConsoleRoulette {
         wheelNumber = (int) (Math.random() * 37);
 
         System.out.println("Ball landed on " + wheelNumber + "!");
+
+        processBets();
     }
 
     class SpinTask extends TimerTask {
