@@ -117,6 +117,20 @@ public class ConsoleRoulette {
         bets.clear();
     }
 
+    private void printTotals() {
+        System.out.println();
+        System.out.println(StringPadder.padStringRight("Player", 25) +
+                StringPadder.padStringLeft("Total Win", 14) +
+                StringPadder.padStringLeft("Total Bet", 14));
+        System.out.println("---");
+        for (String playerName : players) {
+            System.out.println(StringPadder.padStringRight(playerName, 25) +
+                    StringPadder.padStringLeft("" + getTotalWinnings(playerName), 14) +
+                    StringPadder.padStringLeft("" + getTotalBets(playerName), 14));
+        }
+        System.out.println();
+    }
+
     public void loadPlayers() {
         BufferedReader reader;
         try {
@@ -144,6 +158,7 @@ public class ConsoleRoulette {
 
         processBets();
         clearBets();
+        printTotals();
         prompt();
     }
 
